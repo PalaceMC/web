@@ -1,0 +1,21 @@
+{
+    "name": "palace-web",
+    "version": "0.1.0",
+    "engines": {
+        "node": "12.x"
+    },
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "dotenv": "^6.0.0",
+        "ejs": "^3.1.2",
+        "express": "5.0.0-alpha.8",
+        "http-proxy-middleware": "^1.0.6"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PalaceMC/web"
+    }
+}
