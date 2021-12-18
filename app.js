@@ -43,7 +43,7 @@ async function main() {
 
     // strip trailing slashes (they fuck up resource loading)
     app.use((req, res, next) => {
-        if (req.path.substr(-1) == '/' && req.path.length > 1) {
+        if (req.path.substr(0,4) != '/map' && req.path.substr(-1) == '/' && req.path.length > 1) {
             let query = req.url.slice(req.path.length)
             res.redirect(301, req.path.slice(0, -1) + query)
         } else {
@@ -80,8 +80,7 @@ async function main() {
     app.get('/discord', async (req, res) => {
 
         if (req.query.state == null) {
-            res.send('redirect')
-            //res.redirect(DISCORD_URL)
+            res.redirect(DISCORD_URL)
             return
         }
 
@@ -108,15 +107,12 @@ async function main() {
 
         } catch (error) {
             console.log(error)
-            res.send('redirect')
-            //res.redirect(DISCORD_URL)
+            res.redirect(DISCORD_URL)
             return
         }
 
         if (code == null) {
-            //res.redirect(DISCORD_AUTH + `&state=${uuid.toString()}-${hash}`)
-            res.redirect("https://discord.com/api/oauth2/authorize?client_id=782453797007786024&redirect_uri=https%3A%2F%2Fpalacemc.net%2Fdiscord&response_type=code&scope=identify" +
-                `&state=${uuid.toString()}-${hash}`)
+            res.redirect(DISCORD_AUTH + `&state=${uuid.toString()}-${hash}`)
         } else {
 
             // check uuid and hash match in DB, and not expired
