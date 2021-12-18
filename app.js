@@ -180,7 +180,7 @@ async function main() {
                 'client_secret': DISCORD_SECRET,
                 'grant_type': 'authorization_code',
                 'code': code,
-                'redirect_uri': 'http://localhost:8080/discord'
+                'redirect_uri': 'https://palacemc.net/discord'
             }
 
             //console.log(data)
