@@ -115,7 +115,7 @@ async function main() {
 
         if (code == null) {
             //res.redirect(DISCORD_AUTH + `&state=${uuid.toString()}-${hash}`)
-            res.redirect("https://discord.com/api/oauth2/authorize?client_id=782453797007786024&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdiscord&response_type=code&scope=identify" +
+            res.redirect("https://discord.com/api/oauth2/authorize?client_id=782453797007786024&redirect_uri=https%3A%2F%2Fpalacemc.net%2Fdiscord&response_type=code&scope=identify" +
                 `&state=${uuid.toString()}-${hash}`)
         } else {
 
