@@ -63,16 +63,14 @@ async function main() {
     app.get('/shop/?', (req, res) => res.render('shop'))
 
     // proxy work (dynmap stuff)
-    app.get('^/map/hub$', (req, res) => res.redirect('/map/hub/'))
-    app.use('/map/hub/', createProxyMiddleware({
+    app.use('^/map/hub$', createProxyMiddleware({
         target: `http://${CREATIVEIP}:${CREATIVEPORT}`,
-        pathRewrite: { '^/map/hub/': '' }
+        pathRewrite: { '^/map/hub': '' }
     }))
 
-    app.get('^/map/survival$', (req, res) => res.redirect('/map/survival/'))
-    app.use('/map/survival/', createProxyMiddleware({
+    app.use('^/map/survival$', createProxyMiddleware({
         target: `http://${SURVIVALIP}:${SURVIVALPORT}`,
-        pathRewrite: { '^/map/survival/': '' }
+        pathRewrite: { '^/map/survival': '' }
     }))
 
     // Discord account verification
