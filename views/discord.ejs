@@ -9,13 +9,13 @@
 }) -%>
 <body>
 
-<%- include('partials/navigation.ejs', {page: "home"}) -%>
+<%- include('partials/navigation.ejs', {page: "discord_verify"}) -%>
 
 <div id="main">
 <div id="banner">
     <div id="overlay">
-        <h1 style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;margin-top:4em">Website under development</h1>
-        <p style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;font-size:1.3em">Play on PalaceMC today!<br/>IP: <code class="inline-box">palacemc.net</code></p>
+        <h1 style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;margin-top:4em"><% if (success) { %>Success!<% } else { %>Something went wrong<% } %></h1>
+        <p style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;font-size:1.3em"><%- message %></p>
     </div>
 </div>
 

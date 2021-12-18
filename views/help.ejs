@@ -1,0 +1,87 @@
+<%- include('partials/header.ejs', {
+    title: "PalaceMC",
+    description: "blah blah blah",
+    keywords: [
+        "Minecraft",
+        "PalaceMC",
+        "Palace"
+    ]
+}) -%>
+<body>
+
+<%- include('partials/navigation.ejs', {page: "help"}) -%>
+
+<div id="main">
+<div id="banner">
+    <div id="overlay">
+        <h1 style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;margin-top:4em">&#x26A0; Page under construction &#x26A0;</h1>
+        <p style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;font-size:1.3em">The content here probably isn't final.</p>
+    </div>
+</div>
+<div id="content-wrapper">
+
+<div id="content">
+    <div class="block">
+        <h2>Common commands</h2>
+        <p>
+            <code class="inline-box">/plot auto</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">Claim a new plot in Creative.</span>
+        </p>
+        <p>
+            <code class="inline-box">/plot visit [name]</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">Go to a plot owned by [name].</span>
+        </p>
+        <p>
+            <code class="inline-box">//wand</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">Get the World Edit wand tool. Click here for a <a href="https://www.youtube.com/watch?v=uSormHoPnL4&utm_source=palacemc.net" target="_blank">World Edit tutorial</a>.</span>
+        </p>
+        <p>
+            <code class="inline-box">/channel</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">Change your active chat channel. Use tab-complete for more details.</span>
+        </p>
+        <p>
+            <code class="inline-box">/scoreboard (disable|name)</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">Change the scoreboard type, or disable it with "disable". Use tab-complete for available scoreboards.</span>
+        </p>
+        <br />
+        <h2>Social commands</h2>
+        <p>
+            <code class="inline-box">/ignore (player)</code>
+            <br />
+            <span style="display:inline-block;margin-top:0.5em">
+                Ignore players to stop receiving chat messages from them.
+                <br />
+                Use a UUID to ignore offline players, this can be found with the <code>/seen</code> command.
+            </span>
+        </p>
+        <p>
+            <code class="inline-box">/seen (player)</code>
+            <br />
+            <span style="display: inline-block; margin-top: 0.5em">Check the online status of any player and see their UUID.</span>
+        </p>
+        <p>
+            <code class="inline-box">/mail</code>
+            <br />
+            <span style="display: inline-block; margin-top: 0.5em">Check your mailbox, or send mail to other players. Use tab-complete for more help.</span>
+        </p>
+        <p>
+            <code class="inline-box">/msg (player)</code>
+            <br />
+            <span style="display: inline-block; margin-top: 0.5em">Send a private message to another online player.</span>
+        </p>
+    </div>
+</div>
+
+<%- include('partials/bottom.ejs') -%>
+
+</div>
+</div>
+
+</body>
+
+<%- include('partials/footer.ejs') -%>

@@ -1,0 +1,359 @@
+html {
+	width: 100%;
+	min-height: 100%;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background: #1f1f29;
+	color: white;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3 {
+	font-family: 'Rajdhani', sans-serif;
+	font-weight: 400;
+	margin: 20px 0;
+}
+
+h1 {
+	font-size: 2.5em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+p, ul {
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+}
+
+/* Spans immediately following a <br/> which are part of a paragraph.
+   This is great because we can just place a <span> when we want newlines to be indented
+*/
+p>br + span {
+	padding-left: 1em;
+}
+
+/* Otherwise we can just have the entire paragraph be indented */
+p.indent {
+	text-indent: 1em;
+}
+
+p>a, p>span>a {
+	color: #C15FFF;
+	text-decoration: none;
+	transition: color 75ms linear, border-color 75ms linear;
+	border-bottom: 1px solid rgba(0,0,0,0);
+}
+
+p>a:hover, p>span>a:hover {
+	color: #FF75C2;
+	border-bottom-color: rgba(255, 117, 194, 1);
+}
+
+li {
+	margin: 0.5em 0;
+}
+
+code {
+	font-family: 'Courier New', 'Courier', monospace;
+}
+
+code.inline-box {
+	background: rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(0, 0, 0, 0.8);
+	border-radius: 3px;
+	padding: 0.0625em 0.25em;
+	margin: 0.125em 0.25em;
+}
+
+/* This is the head graphic, which fades at a point into the grain background */
+#banner {
+	background-image: url(../img/1.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+	mask-image: linear-gradient(rgba(0, 0, 0, 1) 60%, transparent 80%);
+	-webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1) 60%, transparent 80%);
+	width: 100%;
+	height: 100%;
+	min-height: 55em;
+	max-height: 67em;
+	position: absolute;
+	z-index: 1;
+}
+
+/* image overlap container for whatever stuff */
+#banner>#overlay {
+	width: 100%;
+	height: 80%;
+}
+
+/* The dom part of the website */
+#navigation {
+	background: #96969633;
+	border-bottom: 1px solid #ccc;
+	height: 5.6em;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 3;
+	display: flex;
+}
+
+@supports (backdrop-filter: none) {
+	#navigation {
+		background: #69696933;
+		backdrop-filter: blur(3px);
+	}
+}
+
+#navigation>a {
+	color: unset;
+	text-decoration: none;
+	transition: color 75ms linear;
+}
+
+#navigation>a:hover {
+	color: #F497B9;
+}
+
+/* sizing of nav content */
+#nav-content {
+	width: calc(100% - 17.5115em);
+	height: 5.6em;
+	padding: 1em 0;
+	display: flex;
+	flex-direction: row-reverse;
+	overflow-x: auto;
+
+	/* Firefox scrollbar for overflow */
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0);
+
+}
+
+/* Nice small scrollbar for navigation overflow */
+#nav-content::-webkit-scrollbar {
+	height: 0.5em;
+}
+#nav-content::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0);
+}
+#nav-content::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+#nav-content>a {
+	color: unset;
+	font-size: 2em;
+	font-family: 'Catamaran', sans-serif;
+	font-weight: 700;
+	padding: 0.30625em 0.25em;
+	text-decoration: none;
+	margin-left: 0.75em;
+	transition: color 75ms linear;
+}
+
+#nav-content>a.active {
+	color: #FF75C2;
+}
+
+#nav-content>a:last-child {
+	margin-left: 0;
+}
+
+#nav-content>a:link,  #nav-content>a:visited, #nav-content>a:hover, #nav-content>a:active {
+
+}
+
+#nav-content>a:hover {
+	color: #F497B9;
+}
+
+/* logo in nav bar */
+#nav-logo {
+	background-image: url(../img/logo_200.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 5.824em;
+	min-width: 5.824em;
+	height: 4.48em;
+	margin: 0.784em 11.6875em 0.336em 0;
+}
+
+#nav-logo>h1 {
+	margin: 0;
+	margin-left: 3.375em;
+	padding-top: 0.41425em;
+	font-family: 'Merienda', cursive;
+	font-weight: 700;
+}
+
+/* Helper to position the main site content */
+#main {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+/* Background image + sizes the main content section */
+#content-wrapper {
+	background-image: url(../img/grain_bg_1f1f29.png);
+	background-repeat: repeat;
+	width: 100%;
+	position: relative;
+}
+
+/* Final sizing and positioning of main content */
+#content {
+	min-height: max(17em, calc(100% - 6em));
+	padding: 11em 0 0;
+	position: relative;
+	z-index: 2;
+}
+
+#content>div.block {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 2em 1em;
+	border-left: 1px solid rgba(193,95,255,0.4);
+	border-right: 1px solid rgba(193,95,255,0.4);border-image-slice: 1;
+	border-image-source: linear-gradient(rgba(0,0,0,0) min(10%, 1.5em), rgba(193,95,255,0.4) min(30%, 4.5em), rgba(193,95,255,0.4) max(70%, calc(100% - 4.5em)), rgba(0,0,0,0) max(90%, calc(100% - 1.5em)));
+	background-image: linear-gradient(rgba(0,0,0,0) min(10%, 1em), #1f1f29 min(15%, 1.5em), #1f1f29 max(85%, calc(100% - 1.5em)), rgba(0,0,0,0) max(90%, calc(100% - 1em)));
+}
+
+/* The submissive part of the website */
+#bottom {
+	background: #1f1f29;
+	border-top: 1px solid #ccc;
+	height: 6em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#bottom>p {
+	margin: 0.5em 0;
+}
+
+/* Tiny screens */
+@media only screen and (max-width:799px) {
+
+	#banner, #main {
+		min-width: 600px;
+	}
+
+	#navigation {
+		padding: 0 1em;
+	}
+
+	#nav-logo {
+		margin-right: 2em;
+	}
+
+	#nav-logo>h1 {
+		visibility: hidden;
+		width: 0;
+		height: 0;
+	}
+
+	#banner {
+		top: -12em;
+	}
+
+	#banner>#overlay {
+		padding-top: calc(12em + 5.6em);
+	}
+
+	#nav-content {
+		width: calc(100% - 7.824em);
+		/* Shadows for scrolling */
+		border-left: 1px solid;
+		border-right: 1px solid;
+		border-image-slice: 1;
+		border-image-source: linear-gradient(rgba(0,0,0,0) 10%, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 90%);
+	}
+
+	#content-wrapper {
+		top: calc(clamp(33em, 60%, 40.2em) - 12em);
+		height: calc(100% - clamp(33em, 60%, 40.2em) + 12em);
+	}
+
+}
+
+/* Big mobile */
+@media only screen and (min-width:800px) {
+
+	#banner {
+		top: -6em;
+	}
+
+	#banner > #overlay {
+		padding-top: calc(6em + 5.6em);
+	}
+
+	#navigation {
+		padding: 0 2em;
+	}
+
+	#nav-logo>h1 {
+
+	}
+
+	#content-wrapper {
+		top: calc(clamp(33em, 60%, 40.2em) - 6em);
+		height: calc(100% - clamp(33em, 60%, 40.2em) + 6em);
+	}
+
+}
+
+/* Desktop */
+@media only screen and (min-width:1200px) {
+
+	#banner {
+		top: 0;
+	}
+
+	#banner>#overlay {
+		padding-top: 5.6em;
+	}
+
+	#navigation {
+		padding: 0 5em;
+	}
+
+	#nav-logo {
+		margin-right: 16.6875em;
+	}
+
+	#nav-logo > h1 {
+		font-size: 3em;
+		margin-left: 2.25em;
+		padding-top: 0;
+	}
+
+	#nav-content {
+		width: calc(100% - 22.5115em);
+	}
+
+	#content-wrapper {
+		top: clamp(33em, 60%, 40.2em);
+		height: calc(100% - clamp(33em, 60%, 40.2em));
+	}
+
+}

@@ -12,7 +12,10 @@
         "dotenv": "^6.0.0",
         "ejs": "^3.1.2",
         "express": "5.0.0-alpha.8",
-        "http-proxy-middleware": "^1.0.6"
+        "http-proxy-middleware": "^1.0.6",
+        "mongodb": "^4.2.1",
+        "request": "^2.88.2",
+        "uuid-mongodb": "^2.4.5"
     },
     "repository": {
         "type": "git",
