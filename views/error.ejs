@@ -1,0 +1,40 @@
+<%- include('partials/header.ejs', {
+    title: "PalaceMC - " + errorTitle,
+    description: "blah blah blah",
+    keywords: [
+        "Minecraft",
+        "PalaceMC",
+        "Palace"
+    ]
+}) -%>
+<body>
+
+<%- include('partials/navigation.ejs', {page: "error"}) -%>
+
+<div id="main">
+<div id="banner">
+    <div id="overlay">
+        <h1 style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;margin-top:4em"><%- errorHeader %></h1>
+        <p style="text-shadow:1px 1px 3px rgba(0,0,0,0.4);text-align:center;font-size:1.3em"><%- errorMessage %></p>
+    </div>
+</div>
+<div id="content-wrapper">
+
+<div id="content">
+    <%_ if (errorContent) { %>
+    <div class="block">
+        <%- errorContent %>
+    </div>
+    <%_ } %>
+</div>
+
+<%- include('partials/bottom.ejs') -%>
+
+</div>
+</div>
+
+<%- include('partials/statcounter.ejs') -%>
+
+</body>
+
+<%- include('partials/footer.ejs') -%>

@@ -285,6 +285,27 @@ async function main() {
 
     })
 
+    // 404 Not Found response
+    app.use((req, res, next) => {
+        res.status(404).render("error", {
+            errorTitle: "404 Not Found",
+            errorHeader: "404",
+            errorMessage: "The page you requested doesn't exist. That's all I know.",
+            errorContent: false
+        })
+    })
+
+    // 500 Server Error response
+    app.use((err, req, res, next) => {
+        console.error(err.stack)
+        res.status(500).render("error", {
+            errorTitle: "500 Internal Server Error",
+            errorHeader: "Woah!",
+            errorMessage: "Yep, you broke it. Good job. (500 Internal Server Error)",
+            errorContent: false
+        })
+    })
+
     const server = app.listen(PORT, () => {
         console.log(`Listening on port ${server.address().port}`)
     })
@@ -296,4 +317,3 @@ async function main() {
 main()
     .then(console.log)
     .catch(console.error)
-
