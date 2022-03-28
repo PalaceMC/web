@@ -9,7 +9,7 @@ const request = require('request')
 
 // mongodb connection
 const MUUID = require('uuid-mongodb').mode('relaxed')
-const { MongoClient, Long } = require('mongodb')
+const { MongoClient, Long, ReturnDocument } = require('mongodb')
 const client = new MongoClient("mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@master-waua9.mongodb.net/?retryWrites=true")
 
 // express app setup
@@ -36,6 +36,7 @@ async function main() {
     await client.connect()
     console.log("Connected to database")
     const database = client.db("minecraft")
+    const discord = client.db("discord")
 
     // configure static resources (stylesheets, images, etc.)
     //app.use(express.static(path.join(__dirname, 'static')))
@@ -269,6 +270,7 @@ async function main() {
                     'connections.$[con].hash_ttl': Long.fromString("-31557014167219200")
 				}
             }, {
+                returnDocument: ReturnDocument.AFTER,
                 arrayFilters: [{
                     'con.type': 'discord'
 				}]
@@ -276,6 +278,25 @@ async function main() {
 
             if (updateResult.lastErrorObject.updatedExisting) {
                 res.render("discord", { success: true, message: successMessage })
+
+                const username = updateResult.value.name
+                // try to send username to verification webhooks
+                discord.collection("servers").find({}).forEach(doc => {
+                    if (doc.hasOwnProperty('webhooks') && Array.isArray(doc.webhooks)) {
+                        for (const webhook of doc.webhooks) {
+                            if (webhook.kind.localeCompare("verify") == 0) {
+                                // Send to discord
+                                util.promisify(request.post)({
+                                    url: `https://discord.com/api/v8/webhooks/${webhook.id}/${webhook.token}`,
+                                    form: {
+                                        'content': username
+                                    }
+                                })
+                            }
+                        }
+                    }
+                })
+
                 return
 			}
 
