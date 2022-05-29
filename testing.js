@@ -24,9 +24,10 @@ async function main() {
         //lookupPlayerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
         //playerGetStats('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'survival.beta.kills')
         //mailSave('3b2181ec-535b-4e49-bed4-76673046bb51', '61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'My Ass', 'just testing API things get pranked haha')
-        mailGet("to", "3b2181ec-535b-4e49-bed4-76673046bb51")
+        //mailGet("to", "3b2181ec-535b-4e49-bed4-76673046bb51")
         //mailGet("from", "61408852-e247-4f91-8f4c-1e3fdbcd64fe")
         //mailDelete('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
+        mailRead('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
 
     console.log(util.inspect(r, undefined, 3, true))
     sleep(500)
