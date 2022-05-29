@@ -1,0 +1,10 @@
+{
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "workbench.colorTheme": "Abyss",
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#ffffff10"
+    }
+}
