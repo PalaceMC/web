@@ -19,18 +19,16 @@ const crypto = require('crypto')
 
 async function main() {
 
-    let r = await database.playerCount()
-    console.log(r)
+    let r = await database.
+        //playerCount()
+        //lookupPlayerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
+        //playerGetStats('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'survival.beta.kills')
+        //mailSave('3b2181ec-535b-4e49-bed4-76673046bb51', '61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'My Ass', 'just testing API things get pranked haha')
+        mailGet("to", "3b2181ec-535b-4e49-bed4-76673046bb51")
+        //mailGet("from", "61408852-e247-4f91-8f4c-1e3fdbcd64fe")
+        //mailDelete('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
 
-    //let me = await database.lookupPlayerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
-    //console.log(me)
-
-    //let r = await database.playerGetStats('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'survival.beta.kills')
-    //console.log(r)
-
-    //let r = await database.mailSave('3b2181ec-535b-4e49-bed4-76673046bb51', '61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'My Ass', 'just testing API things get pranked haha')
-    //console.log(util.inspect(r, undefined, 3, true))
-
+    console.log(util.inspect(r, undefined, 3, true))
     sleep(500)
 
     database.shutdown()
