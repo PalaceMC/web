@@ -28,7 +28,8 @@ async function main() {
         //mailGet("from", "61408852-e247-4f91-8f4c-1e3fdbcd64fe")
         //mailDelete('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
         //mailRead('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
-        moderationMute("61408852-e247-4f91-8f4c-1e3fdbcd64fe", null)
+        //moderationMute("61408852-e247-4f91-8f4c-1e3fdbcd64fe", null)
+        playerConnectionFind('discord', '210270460313731072')
 
     console.log(util.inspect(r, undefined, 3, true))
     sleep(500)
