@@ -16,7 +16,8 @@
         "http-proxy-middleware": "^1.0.6",
         "mongodb": "^4.6.0",
         "request": "^2.88.2",
-        "uuid-mongodb": "^2.4.5"
+        "uuid-mongodb": "^2.4.5",
+        "when-json-met-bigint": "^0.27.0"
     },
     "repository": {
         "type": "git",

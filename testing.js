@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const util = require('util')
 const { UUID } = require('bson')
+const JSONB = require('when-json-met-bigint').JSONB({strict: true, protoAction: 'ignore', constructorAction: 'ignore'})
 const { ObjectId } = require('mongodb')
 const NULL_OBJECTID_S = "000000000000000000000000"
 const NULL_OBJECTID = new ObjectId(NULL_OBJECTID_S)
@@ -29,9 +30,11 @@ async function main() {
         //mailDelete('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
         //mailRead('3b2181ec-535b-4e49-bed4-76673046bb51', '6289788cbd6239faf862b840')
         //moderationMute("61408852-e247-4f91-8f4c-1e3fdbcd64fe", null)
-        playerConnectionFind('discord', '210270460313731072')
+        //playerConnectionFind('discord', '210270460313731072')
+        playerConnectionGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", 'token')
 
     console.log(util.inspect(r, undefined, 3, true))
+    //console.log(JSONB.stringify(r))
     sleep(500)
 
     database.shutdown()
