@@ -32,7 +32,8 @@ async function main() {
         //moderationMute("61408852-e247-4f91-8f4c-1e3fdbcd64fe", null)
         //playerConnectionFind('discord', '210270460313731072')
         //playerConnectionGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", 'token')
-        playerConnectionSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", "content", "210270460313731072", 31556889864403199n) // 210270460313731072
+        //playerConnectionSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", "content", "210270460313731072", 31556889864403199n) // 210270460313731072
+        playerDataGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'scoreboard')
 
     console.log(util.inspect(r, undefined, 3, true))
     //console.log(JSONB.stringify(r))
