@@ -46,7 +46,7 @@ async function main() {
 
     //console.log(nullId.equals(NULL_OBJECTID))
 
-    //return 'testin\''
+    return 'done.'
 }
 
 main()
