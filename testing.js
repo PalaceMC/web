@@ -36,7 +36,8 @@ async function main() {
         //playerDataGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'scoreboard')
         //playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
         //playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
-        playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
+        //playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
+        playerLogout("61408852-e247-4f91-8f4c-1e3fdbcd64fe")
 
     console.log(util.inspect(r, undefined, 3, true))
     //console.log(JSONB.stringify(r))
