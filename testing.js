@@ -22,7 +22,7 @@ async function main() {
 
     let r = await database.
         //playerCount()
-        //lookupPlayerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
+        //playerByUUID('5b084158-b400-4ba7-88fe-7b730f2627db')
         //playerGetStats('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'survival.beta.kills')
         //mailSave('3b2181ec-535b-4e49-bed4-76673046bb51', '61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'My Ass', 'just testing API things get pranked haha')
         //mailGet("to", "3b2181ec-535b-4e49-bed4-76673046bb51")
@@ -35,7 +35,8 @@ async function main() {
         //playerConnectionSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", "content", "210270460313731072", 31556889864403199n) // 210270460313731072
         //playerDataGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'scoreboard')
         //playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
-        playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
+        //playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
+        playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
 
     console.log(util.inspect(r, undefined, 3, true))
     //console.log(JSONB.stringify(r))
