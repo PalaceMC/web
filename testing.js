@@ -34,7 +34,8 @@ async function main() {
         //playerConnectionGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", 'token')
         //playerConnectionSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", "content", "210270460313731072", 31556889864403199n) // 210270460313731072
         //playerDataGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'scoreboard')
-        playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
+        //playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
+        playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
 
     console.log(util.inspect(r, undefined, 3, true))
     //console.log(JSONB.stringify(r))
