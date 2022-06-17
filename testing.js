@@ -37,10 +37,17 @@ async function main() {
         //playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
         //playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
         //playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
-        playerLogout("61408852-e247-4f91-8f4c-1e3fdbcd64fe")
+        //playerLogout("61408852-e247-4f91-8f4c-1e3fdbcd64fe")
+        playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
 
     console.log(util.inspect(r, undefined, 3, true))
-    //console.log(JSONB.stringify(r))
+
+    if (!r.error) {
+        r = await database.playerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
+
+        console.log(util.inspect(r, undefined, 3, true))
+    }
+
     sleep(500)
 
     database.shutdown()
