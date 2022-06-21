@@ -177,11 +177,43 @@ describe('Database', function () {
 
         it('error on invalid parameters')
 
-        it('empty for player not found')
+        it('empty for player not found', async function () {
 
-        it('mutes player for time')
+            let r = await database.moderationMute(nonePlayerUUID, null)
 
-        it('unmutes player (default)')
+            assert.deepStrictEqual(r, {})
+
+        })
+
+        it('mutes player for time', async function () {
+
+            let mute = Date.now() + 5000 // adding time isn't really necessary but whatever
+
+            let r = await database.moderationMute(animalclinicUUID, mute)
+
+            assert.deepStrictEqual(r, {success: 1})
+
+            // retrieve and test mute time set correctly
+
+            r = await database.moderationMute(animalclinicUUID, '?')
+
+            assert.deepStrictEqual(r, {time: mute})
+
+        })
+
+        it('unmutes player (default)', async function () {
+
+            let r = await database.moderationMute(animalclinicUUID) // single argument defaults to unmute
+
+            assert.deepStrictEqual(r, {success: 1})
+
+            // retrieve and test mute was set to null
+
+            r = await database.moderationMute(animalclinicUUID, '?')
+
+            assert.deepStrictEqual(r, {time: null})
+
+        })
 
     })
 
