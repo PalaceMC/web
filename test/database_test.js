@@ -4,22 +4,51 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
+const assert = require('assert')
+
 const { UUID } = require('bson')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 
 const database = require('../lib/database')
 
+const almicUUID = '61408852-e247-4f91-8f4c-1e3fdbcd64fe'
+const almicProfile = {
+    uuid: almicUUID,
+    firstLogin: 1569587100000,
+    name: 'almic',
+    nameStyle: {
+        color: '95f0eb',
+        colorB: 'cff8f6',
+        bold: true
+    }
+}
+const animalclinicUUID = 'aabc4b20-c14a-4ead-94fa-5d594042a57d'
+const animalclinicProfile = {
+    uuid: animalclinicUUID,
+    firstLogin: 1571271180000,
+    name: 'animalclinic',
+    nameStyle: {}
+}
 const testPlayerUUID = '5b084158-b400-4ba7-88fe-7b730f2627db'
 const testPlayerUUIDBin = new UUID(testPlayerUUID).toBinary()
-
+const testPlayerProfile = {
+    uuid: testPlayerUUID,
+    firstLogin: 0, // will be updated in testing
+    name: 'animalclinic', // set to 'animalclinic' as it will be this when tested
+    nameStyle: {}
+}
+const nonePlayerUUID = '4f16bc54-a296-40ea-bb51-ba6b04ad42c1'
 
 describe('Database', function () {
 
     before(async function () {
 
-        process.stdout.write('  ') // indent connection message
+        console.log('\x1b[33mNote: These tests alter the database, and so failures may \"fix\" themselves.')
+        console.log('If any tests fail, note them down, and rerun the suite to see if they change or resolve themselves.\n')
+
+        process.stdout.write('  \x1b[36m') // indent and color connection message
         let r = await database.logSave('test')
-        process.stdout.write('\x1b[1F') // move up one line, so no empty gap
+        process.stdout.write('\x1b[39m\x1b[1F') // move up one line, so no empty gap
 
         if (!r.success)
             throw new Error(r.error)
@@ -178,11 +207,38 @@ describe('Database', function () {
 
             it('error on malicious input')
 
-            it('login existing player')
+            it('login existing player', async function () {
 
-            it('login new player')
+                let r = await database.playerLogin(almicUUID, "almic")
 
-            it('login and changes name')
+                let time = r.time // copy time
+
+                assert.deepStrictEqual(r, {time})
+
+            })
+
+            it('login new player', async function () {
+
+                let r = await database.playerLogin(testPlayerUUID, "Elite2738")
+
+                let time = r.time // copy time
+
+                assert.deepStrictEqual(r, {time, new: true})
+
+                // save to test profile
+                testPlayerProfile.firstLogin = time
+
+            })
+
+            it('login and changes name', async function () {
+
+                let r = await database.playerLogin(testPlayerUUID, "animalclinic") // set to "animalclinic" for multiple player finds in later test
+
+                let time = r.time // copy time
+
+                assert.deepStrictEqual(r, {time, oldName: "Elite2738"})
+
+            })
 
         })
 
@@ -194,11 +250,34 @@ describe('Database', function () {
 
             it('error on malicious input')
 
-            it('finds no player')
+            it('finds no player', async function () {
 
-            it('finds single player')
+                let r = await database.playerByName('hypixel') // lol
 
-            it('finds multiple players')
+                assert.deepStrictEqual(r, {count: 0, players: []})
+
+            })
+
+            it('finds single player', async function () {
+
+                let r = await database.playerByName('almic')
+
+                assert.deepStrictEqual(r, {count: 1, players: [almicProfile]})
+
+            })
+
+            it('finds multiple players', async function () {
+
+                let r = await database.playerByName('animalclinic')
+
+                // This can be in either order, and idk how best to check so I just do both asserts and hope one works
+                try {
+                    assert.deepStrictEqual(r, {count: 2, players: [testPlayerProfile, animalclinicProfile]})
+                } catch (err) {
+                    assert.deepStrictEqual(r, {count: 2, players: [animalclinicProfile, testPlayerProfile]})
+                }
+
+            })
 
         })
 
@@ -208,9 +287,21 @@ describe('Database', function () {
 
             it('error on invalid uuid')
 
-            it('finds no player')
+            it('finds no player', async function () {
 
-            it('finds single player')
+                let r = await database.playerByUUID(nonePlayerUUID)
+
+                assert.deepStrictEqual(r, {})
+
+            })
+
+            it('finds single player', async function () {
+
+                let r = await database.playerByUUID(almicUUID)
+
+                assert.deepStrictEqual(r, almicProfile)
+
+            })
 
         })
 
@@ -338,9 +429,31 @@ describe('Database', function () {
 
             it('error on invalid uuid')
 
-            it('finds no player')
+            it('finds no player', async function () {
 
-            it('logout player')
+                let r = await database.playerLogout(nonePlayerUUID)
+
+                assert.deepStrictEqual(r, {})
+
+            })
+
+            it('logout player', async function () {
+
+                // Need to logout almic and test player
+
+                let r = await database.playerLogout(almicUUID)
+
+                let time = r.time // copy time
+
+                assert.deepStrictEqual(r, {time})
+
+                r = await database.playerLogout(testPlayerUUID)
+
+                time = r.time
+
+                assert.deepStrictEqual(r, {time})
+
+            })
 
         })
 
@@ -354,15 +467,82 @@ describe('Database', function () {
 
             it('error on malformed properties')
 
-            it('finds no player')
+            it('finds no player', async function () {
 
-            it('sets name style')
+                let r = await database.playerNameStyleSet(nonePlayerUUID, {mColor: 'a', underline: true})
 
-            it('overwrites name style')
+                assert.deepStrictEqual(r, {})
 
-            it('resets name style')
+            })
 
-            it('resets on effectively white styles')
+            it('sets name style', async function () {
+
+                let r = await database.playerNameStyleSet(animalclinicUUID, {
+                    mColor: 'a',
+                    color: '123456',
+                    bold: true
+                })
+
+                assert.deepStrictEqual(r, {success: 1})
+
+                // retrieve and test name style was set correctly
+
+                r = await database.playerByUUID(animalclinicUUID)
+
+                assert.deepStrictEqual(r.nameStyle, {color: '123456', bold: true})
+
+            })
+
+            it('overwrites name style', async function () {
+
+                let r = await database.playerNameStyleSet(animalclinicUUID, {
+                    mColor: 'c',
+                    underline: true
+                })
+
+                assert.deepStrictEqual(r, {success: 1})
+
+                // retrieve and test name style was set correctly
+
+                r = await database.playerByUUID(animalclinicUUID)
+
+                assert.deepStrictEqual(r.nameStyle, {mColor: 'c', underline: true})
+
+            })
+
+            it('resets name style', async function () {
+
+                let r = await database.playerNameStyleSet(animalclinicUUID, {}) // null should also work, this just triggers more code to run
+
+                assert.deepStrictEqual(r, {success: 1})
+
+                // retrieve and test name style was reset
+
+                r = await database.playerByUUID(animalclinicUUID)
+
+                assert.deepStrictEqual(r.nameStyle, {})
+
+            })
+
+            it('resets on effectively white styles', async function () {
+
+                let r = await database.playerNameStyleSet(animalclinicUUID, {
+                    mColor: 'c', // this is here to ensure color value takes priority
+                    color: 'ffffff',
+                    colorB: 'ffffff', // both set to white, covers more code
+                    bold: false,
+                    underline: undefined // specifically define as undefined, should effectively be the same as marking false
+                })
+
+                assert.deepStrictEqual(r, {success: 1})
+
+                // retrieve and test namestyle was reset
+
+                r = await database.playerByUUID(animalclinicUUID)
+
+                assert.deepStrictEqual(r.nameStyle, {})
+
+            })
 
         })
 
@@ -453,9 +633,9 @@ describe('Database', function () {
 
     after(async function () {
 
-        process.stdout.write('\n  ') // next line and indent
+        process.stdout.write('\n  \x1b[36m') // next line, color, and indent
         await database.shutdown()
-        process.stdout.write('\x1b[1F\x1b[29G') // move to end of above output
+        process.stdout.write('\x1b[39m\x1b[1F\x1b[29G') // move to end of above output
 
         dbClient = new MongoClient(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@master-waua9.mongodb.net/?retryWrites=true`,
             {
