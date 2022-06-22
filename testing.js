@@ -1,3 +1,7 @@
+/**
+ * This is NOT the unit testing file. Tests are in the /test/ folder and run using Mocha.
+ * This file is just for quick development testing.
+ */
 
 if (process.env.NODE_ENV !== 'production') {
     // Development environment
