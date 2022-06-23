@@ -32,15 +32,13 @@ async function main() {
     app.use((req, res, next) => {
         req.requestTime = Date.now()
 
-        // Get remote address and validate
-        let ip, port
-        if (req.header('X-Cloudflare-Auth') === PROXY_SECRET) {
-            ip = req.header('CF-Connecting-IP')
-            port = Number.parseInt(req.header('X-Client-Port'), 10)
-        } else {
-            ip = req.socket.remoteAddress
-            port = req.socket.remotePort
+        if (req.header('X-Cloudflare-Auth') !== PROXY_SECRET) {
+            return doError(res, 400, 'I have trust issues.')
         }
+
+        // Get remote address and validate
+        let ip = req.header('CF-Connecting-IP')
+        let port = Number.parseInt(req.header('X-Client-Port'), 10)
 
         if (typeof ip != 'string' || ip.length < 7) {
             return doError(res, 400, 'Unable to read remote IP address.')
