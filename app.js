@@ -8,6 +8,7 @@ const CREATIVEIP = process.env.CREATIVEIP
 const CREATIVEPORT = process.env.CREATIVEPORT
 const SURVIVALIP = process.env.SURVIVALIP
 const SURVIVALPORT = process.env.SURVIVALPORT
+const PROXY_SECRET = process.env.PROXY_SECRET
 
 // discord
 
@@ -31,19 +32,21 @@ async function main() {
     app.use((req, res, next) => {
         req.requestTime = Date.now()
 
-        // Cloudflare testing
-        console.log(`CF-Connecting-IP: "${req.header('CF-Connecting-IP')}"`)
-        console.log(`X-Client-Port: "${req.header('X-Client-Port')}"`)
-
         // Get remote address and validate
-        let ip = req.socket.remoteAddress
-        let port = req.socket.remotePort
+        let ip, port
+        if (req.header('X-Cloudflare-Auth') === PROXY_SECRET) {
+            ip = req.header('CF-Connecting-IP')
+            port = Number.parseInt(req.header('X-Client-Port'), 10)
+        } else {
+            ip = req.socket.remoteAddress
+            port = req.socket.remotePort
+        }
 
         if (typeof ip != 'string' || ip.length < 7) {
             return doError(res, 400, 'Unable to read remote IP address.')
         }
 
-        if (typeof port != 'number') {
+        if (typeof port != 'number' || isNaN(port)) {
             return doError(res, 400, 'Unable to read remote port.')
         }
 
