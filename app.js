@@ -23,6 +23,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 const { apiRouter } = require('./lib/api')
 const discord = require('./lib/discord')
 const database = require('./lib/database')
+const { doError } = require('./lib/palace-util')
 
 async function main() {
 
@@ -35,13 +36,11 @@ async function main() {
         let port = req.socket.remotePort
 
         if (typeof ip != 'string' || ip.length < 7) {
-            ip = JSON.stringify(ip)
-            return doError(res, 500, `Unable to read remote IP address. You are [ '${ip}' ]`)
+            return doError(res, 400, 'Unable to read remote IP address.')
         }
 
         if (typeof port != 'number') {
-            port = JSON.stringify(port)
-            return doError(res, 500, `Unable to read remote port. You are [ ${ip}:${port} ]`)
+            return doError(res, 400, 'Unable to read remote port.')
         }
 
         req.remoteAddress = ip
@@ -52,7 +51,7 @@ async function main() {
         req.domain = req.hostname
         req.port = req.socket.localPort
 
-        console.log(`[${req.remoteExpanded}] ${req.method} ${req.protocol}://${req.domain}:${req.port}${req.originalUrl}`)
+        console.log(`${req.requestTime} [${req.remoteExpanded}] ${req.method} ${req.protocol}://${req.domain}:${req.port}${req.originalUrl}`)
 
         next()
     })
