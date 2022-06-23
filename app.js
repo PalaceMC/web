@@ -31,6 +31,10 @@ async function main() {
     app.use((req, res, next) => {
         req.requestTime = Date.now()
 
+        // Cloudflare testing
+        console.log(`CF-Connecting-IP: "${req.header('CF-Connecting-IP')}"`)
+        console.log(`X-Client-Port: "${req.header('X-Client-Port')}"`)
+
         // Get remote address and validate
         let ip = req.socket.remoteAddress
         let port = req.socket.remotePort
