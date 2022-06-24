@@ -103,6 +103,16 @@ describe('Database', function () {
 
     })
 
+    describe('discord', function () {
+
+        describe('discordGetServers()', function () {
+
+            it('works')
+
+        })
+
+    })
+
     describe('logSave()', function () {
 
         it('error on null/ undefined message')

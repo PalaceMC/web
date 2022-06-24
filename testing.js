@@ -19,6 +19,7 @@ const NULL_UUID = new UUID(Buffer.alloc(16, 0)).toBinary()
 const NULL_UUID_S = "00000000-0000-0000-0000-000000000000"
 const { LimitedMap, sleep, resolveObjectPath, flattenObject } = require('./lib/palace-util')
 const database = require('./lib/database')
+const discord = require('./lib/discord')
 
 const crypto = require('crypto')
 
@@ -42,15 +43,22 @@ async function main() {
         //playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
         //playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
         //playerLogout("61408852-e247-4f91-8f4c-1e3fdbcd64fe")
-        playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
+        //playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
+        discordGetServers()
 
-    console.log(util.inspect(r, undefined, 3, true))
+    console.log(util.inspect(r, undefined, 4, true))
 
+    //r = await discord.webhookSend('chat', 'Dream', 'https://mc-heads.net/avatar/ec70bcaf-702f-4bb8-b48d-276fa52a780c/128.png', 'im here to speedrun boogy woogy')
+
+    //console.log(util.inspect(r, undefined, 3, true))
+
+    /*
     if (!r.error) {
         r = await database.playerByUUID('61408852-e247-4f91-8f4c-1e3fdbcd64fe')
 
         console.log(util.inspect(r, undefined, 3, true))
     }
+    */
 
     sleep(500)
 
