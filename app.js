@@ -10,19 +10,13 @@ const SURVIVALIP = process.env.SURVIVALIP
 const SURVIVALPORT = process.env.SURVIVALPORT
 const PROXY_SECRET = process.env.PROXY_SECRET
 
-// discord
-
-// request (promisify)
-const util = require('util')
-const request = require('request')
-
 // express app setup
 const express = require('express')
 const app = express()
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const { apiRouter } = require('./lib/api')
-const discord = require('./lib/discord')
+const { discord } = require('./lib/discord')
 const database = require('./lib/database')
 const { doError } = require('./lib/palace-util')
 
@@ -56,7 +50,11 @@ async function main() {
         req.domain = req.hostname
         req.port = req.socket.localPort
 
-        console.log(`${req.requestTime} [${req.remoteExpanded}] ${req.method} ${req.protocol}://${req.domain}:${req.port}${req.originalUrl}`)
+        // Request logger
+        req.log = function (message) {
+            console.log(`${this.requestTime} [${this.remoteExpanded}] ${this.method} ${this.protocol}://${this.domain}:${this.port}${this.originalUrl}${message ? ' ; ' + message : ''}`)
+        }
+        req.log()
 
         next()
     })
