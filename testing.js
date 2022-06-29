@@ -38,6 +38,8 @@ async function main() {
         //playerConnectionFind('discord', '210270460313731072')
         //playerConnectionGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", 'token')
         //playerConnectionSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "discord", "content", "210270460313731072", 31556889864403199n) // 210270460313731072
+        //playerConnectionSet('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'discord', 'hash', '')
+        //playerConnectionSet('61408852-e247-4f91-8f4c-1e3fdbcd64fe', 'discord', 'content', null)
         //playerDataGet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'scoreboard')
         //playerDataSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", 'mega', null)
         //playerIgnoreSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", "aabc4b20-c14a-4ead-94fa-5d594042a57d", false)
