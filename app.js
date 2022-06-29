@@ -61,7 +61,7 @@ async function main() {
 
     // configure static resources (stylesheets, images, etc.)
     //app.use(express.static(path.join(__dirname, 'static')))
-    app.use(express.static('static'))
+    app.use(express.static('static', {dotfiles: 'allow'}))
 
     // Use apiRouter for the "api" subdomain
     app.use((req, res, next) => {
