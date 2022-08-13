@@ -46,7 +46,9 @@ async function main() {
         //playerLogin("5b084158-b400-4ba7-88fe-7b730f2627db", "Elite2738")
         //playerLogout("61408852-e247-4f91-8f4c-1e3fdbcd64fe")
         //playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
-        discordGetServers()
+        //discordServersGet()
+        //discordRolesGet("355466534400950273", 'member')
+        discordRolesModify("355466534400950273", "moderator", "reset")
 
     console.log(util.inspect(r, undefined, 4, true))
 
