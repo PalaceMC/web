@@ -48,8 +48,18 @@ async function main() {
         //playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
         //discordServersGet()
         //discordRolesGet("355466534400950273", 'member')
-        //discordRolesModify("355466534400950273", "moderator", "reset")
-        discordWebhookGet("355466534400950273")
+        //discordRolesModify("355466534400950273", "moderator", "reset", "")
+        //discordWebhookGet("355466534400950273")
+        /*discordWebhookAdd({
+            type: 1,
+            id: "1008439280886100040",
+            name: "hubbabuba",
+            channel: "961312393206575175",
+            guild: "355466534400950273",
+            token: "3k"
+        }, "chat")
+        */
+       discordWebhookRemove("355466534400950273", "1008439280886100040")
 
     console.log(util.inspect(r, undefined, 4, true))
 
