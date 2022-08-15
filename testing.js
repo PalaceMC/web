@@ -48,7 +48,8 @@ async function main() {
         //playerNameStyleSet("61408852-e247-4f91-8f4c-1e3fdbcd64fe", {bold: true, color: '95f0eb', colorB: 'cff8f6'})
         //discordServersGet()
         //discordRolesGet("355466534400950273", 'member')
-        discordRolesModify("355466534400950273", "moderator", "reset")
+        //discordRolesModify("355466534400950273", "moderator", "reset")
+        discordWebhookGet("355466534400950273")
 
     console.log(util.inspect(r, undefined, 4, true))
 
