@@ -54,12 +54,12 @@ async function main() {
             type: 1,
             id: "1008439280886100040",
             name: "hubbabuba",
-            channel: "961312393206575175",
-            guild: "355466534400950273",
+            channel_id: "961312393206575175",
+            guild_id: "355466534400950273",
             token: "3k"
         }, "chat")
         */
-       discordWebhookRemove("355466534400950273", "1008439280886100040")
+        discordWebhookRemove("355466534400950273", "1008439280886100040")
 
     console.log(util.inspect(r, undefined, 4, true))
 
