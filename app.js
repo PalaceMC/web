@@ -54,7 +54,10 @@ async function main() {
         req.log = function (message) {
             console.log(`${this.requestTime} [${this.remoteExpanded}] ${this.method} ${this.protocol}://${this.domain}:${this.port}${this.originalUrl}${message ? ' ; ' + message : ''}`)
         }
-        req.log()
+
+        // Suppress automatic log for api subdomain
+        if (req.domain.substring(0, 3) !== 'api')
+            req.log()
 
         next()
     })
