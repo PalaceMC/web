@@ -12,7 +12,7 @@
     "dependencies": {
         "async-mutex": "^0.4.0",
         "dotenv": "^16.0.0",
-        "ejs": "^3.1.8",
+        "ejs": "^3.1.10",
         "express": "5.0.0-alpha.8",
         "http-proxy-middleware": "^2.0.6",
         "mongodb": "^4.6.0",
