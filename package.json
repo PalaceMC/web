@@ -15,7 +15,7 @@
         "ejs": "^3.1.8",
         "express": "5.0.0-alpha.8",
         "http-proxy-middleware": "^2.0.6",
-        "mongodb": "^4.6.0",
+        "mongodb": "^6.0.0",
         "request": "^2.88.2",
         "when-json-met-bigint": "^0.27.0"
     },
